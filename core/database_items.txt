@@ -1,0 +1,39 @@
+table User {
+    id int [pk, increment] 
+    email email
+    is_staff boolean
+    is_active boolean
+    type char
+    created_date datetime
+    updated_date datetime
+  }
+  
+  table Post {
+    id int [pk, increment] 
+    author int 
+    title varcharacter
+    content text
+    category int
+    published boolean
+    published_date datetime
+    created_date datetime
+    updated_date datetime
+  }
+  
+  table Category {
+    id int [pk,increment]
+    name varcharacter
+  }
+  
+  table Profile {
+    id int [pk,increment] 
+    user int
+    first_name varcharacter
+    last_name varcharacter
+    image file
+    bio text
+  }
+  
+  Ref: "User"."id" < "Profile"."user"
+  Ref: "Profile"."id" < "Post"."author"
+  Ref: "Category"."id" < "Post"."category"
