@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "accounts",
+    "blog",
 ]
 
 MIDDLEWARE = [
@@ -121,3 +124,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# auth :
+AUTH_USER_MODEL = 'accounts.User'
+
+
+
+
+# --- Static files (CSS, JavaScript, Images) ---
+STATIC_URL = '/static/'
+# این پوشه‌ای است که فایل‌های استاتیک کل پروژه را در آن جمع می‌کنیم
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# پوشه‌ای که خودت دستی فایل‌های CSS/JS را در آن می‌ریزی
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# --- Media files (User uploaded files) ---
+MEDIA_URL = '/media/'
+# پوشه‌ای که فایل‌های آپلود شده فیزیکی در آن ذخیره می‌شوند
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
