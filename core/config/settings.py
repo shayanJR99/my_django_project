@@ -58,7 +58,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -142,3 +142,12 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_URL = '/media/'
 # پوشه‌ای که فایل‌های آپلود شده فیزیکی در آن ذخیره می‌شوند
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# loging in
+# settings.py
+
+AUTH_USER_MODEL = "accounts.User"
+
+LOGIN_URL = "/accounts/login/"
+
+LOGIN_REDIRECT_URL = "/blog/myposts/"

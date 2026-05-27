@@ -1,0 +1,111 @@
+<!-- templates/blog/post_create.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+
+    <style>
+
+        body{
+            background-color: #f4f4f4;
+            font-family: sans-serif;
+        }
+
+        .container{
+            width: 500px;
+            margin: 50px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label{
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select{
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        textarea{
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        button{
+            background-color: black;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover{
+            opacity: 0.9;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Create New Post</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div>
+                <label>Title</label>
+                {{ form.title }}
+            </div>
+
+            <div>
+                <label>Image</label>
+                {{ form.image }}
+            </div>
+
+            <div>
+                <label>Content</label>
+                {{ form.content }}
+            </div>
+
+            <div>
+                <label>Category</label>
+                {{ form.category }}
+            </div>
+
+            <button type="submit">
+                Publish Post
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<h1>My Posts</h1>
+<h1>TEST</h1>
+{% for post in posts %}
+
+<div style="border: 1px solid gray; padding: 15px; margin-bottom: 20px">
+    <h2>{{ post.title }}</h2>
+
+    <p>{{ post.content }}</p>
+
+    {% if post.image %}
+    <img src="{{ post.image.url }}" width="250" />
+    {% endif %}
+
+    <br /><br />
+
+    <a href="{% url 'blog:post_update' pk=post.id %}"> Edit </a>
+
+    |
+
+    <a href="{% url 'blog:post_delete' pk=post.id %}"> Delete </a>
+</div>
+
+{% empty %}
+
+<h3>No posts yet.</h3>
+
+{% endfor %}
+
+
+{% if is_paginated %}
+
+<div style="margin-top: 30px; text-align:center;">
+
+    {% if page_obj.has_previous %}
+        <a href="?page=1">⏮ First</a>
+        <a href="?page={{ page_obj.previous_page_number }}">◀ Prev</a>
+    {% endif %}
+
+
+    {% for num in page_obj.paginator.page_range %}
+
+        {% if page_obj.number == num %}
+            <strong style="margin:0 5px;">{{ num }}</strong>
+        {% else %}
+            <a style="margin:0 5px;" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+
+    {% endfor %}
+
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next ▶</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Last ⏭</a>
+    {% endif %}
+
+</div>
+
+{% endif %}
