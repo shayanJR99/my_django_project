@@ -47,7 +47,7 @@ class PostCreate(CreateView):
 
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.author = self.request.user.profile
         form.instance.published_date = timezone.now()
         return super().form_valid(form)
 
@@ -90,7 +90,7 @@ class PostDelete(DeleteView):
     def get_queryset(self):
 
         return Post.objects.filter(
-            author=self.request.user
+            author=self.request.user.profile
         )
         
 
@@ -105,5 +105,5 @@ class MyPosts(LoginRequiredMixin,ListView):
 
     def get_queryset(self):
 
-        return Post.objects.filter(author=self.request.user,status=1).order_by("-created_date")
+        return Post.objects.filter(author=self.request.user.profile ,status=1).order_by("-created_date")
         
